@@ -6,15 +6,52 @@
     <link rel="stylesheet" href="/dist/style.css">
     <script defer src="/dist/script.js"></script>
     <title>{{.Title}}</title>
+    <style>
+      .image-wrapper {
+        background-image: linear-gradient(to top, rgba(0, 0, 0, 1) 0%, transparent 50%), url({{.Image}});
+    }
+    </style>
   </head>
   <body>
-    {{range .Tags}}
-    <div>
-      <span style="background:red;">{{.Content}}</span>
-      <span style="background:blue;">{{.Href}}</span>
+    <div class="flex-wrapper">
+      <div class="avatar">
+        <div class="image-wrapper">
+          <div class="bottom">
+            <button class="like"><i class="fa-regular fa-thumbs-up like-icon"></i></button>{{.Evaluation.Like}}
+            <button class="dislike"><i class="fa-regular fa-thumbs-down dislike-icon"></i></button>{{.Evaluation.Dislike}}
+          </div>
+        </div>
+        <button class="bookmark">Добавить в закладки</button>
+      </div>
+      <div class="content-wrapper">
+        <h2>{{.Name}}</h2>
+        <snap class="author">{{.Author.Content.Name}}</snap>
+        <snap class="author__dropdown"></snap>
+        <!--@@@@@@@  -->
+        <div class="content">
+          <div class="content__left">
+            <ul class="tags">
+              {{range .Tags}}
+              <li><a href={{.Href}}>{{.Content}}</a></li>
+              {{end}}
+            </ul>
+            <dl class="content__list">
+              <dt>Вышла Серия:</dt>
+              <dd class="episode"><span class="episode__number">{{.Number.Number}}</span>
+                из
+                <span class="episode__total">{{.Number.Total}}</span></dd>
+              <dt>Год:</dt><dd><a href="{{.Year.Href}}">{{.Year.Content}}</a></dd>
+              <dt>Статус:</dt><dd><a href="{{.Status.Href}}">{{.Status.Content}}</a></dd>
+              <dt>Тип:</dt><dd><a href="{{.Type.Href}}">{{.Type.Content}}</a></dd>
+              <dt>Студия:</dt><dd><a href="{{.Studio.Href}}">{{.Studio.Content}}</a></dd>
+              <dt>Озвучка:</dt><dd class="voiceover">{{range .Voiceover}}<a href="{{.Href}}">{{.Content}}</a>{{end}}</dd>
+            </dl>
+          </div>
+          <div class="content__right">
+          </div>
+        </div>
+        <!--@@@@@@@ -->
+      </div>
     </div>
-    {{else}}
-    <div><strong>no rows</strong></div>
-    {{end}}
   </body>
 </html>

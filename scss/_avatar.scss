@@ -1,0 +1,79 @@
+@use "sass:color";
+@use "colors" as *;
+
+@mixin background-color($bg-color) {
+    background-color: $bg-color;
+    &:hover {
+        background-color: color.scale($bg-color, $lightness: -30%);
+        cursor: pointer;
+    }
+}
+
+.avatar > * + * {
+    margin-top: 10px;
+}
+
+.avatar {
+    flex-shrink: 0;
+    width: 260px;
+    .bookmark {
+        color: var(--fg-dark);
+        @include background-color($red);
+
+        border: 0;
+        width: 100%;
+        font-size: 1rem;
+        border-radius: 10px;
+        padding: 1.2rem;
+    }
+}
+// # reset block
+.image-wrapper .bottom > button {
+    border: 0;
+    background: transparent;
+}
+
+.image-wrapper {
+    height: 380px;
+    object-fit: cover;
+    border-radius: 10px;
+
+    display: grid;
+    align-items: end;
+
+    .bottom {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 25px;
+
+        color: var(--fg-dark);
+        > button {
+            color: inherit;
+            margin-inline: 5px;
+            font-size: 25px;
+            border-radius: 10px;
+            padding: 8px 10px;
+        }
+        > .like {
+            @include background-color($red);
+        }
+
+        > .dislike {
+            @include background-color($blue);
+        }
+    }
+}
+
+.episode {
+    span {
+        font-size: 24px;
+        font-weight: 700;
+    }
+    &__number {
+        color: color.scale($red, $lightness: -15%);
+    }
+    &__total {
+        color: black;
+    }
+}

@@ -1,0 +1,13 @@
+@use "sass:color";
+
+$red: #dd5161;
+$blue: #1e98c4;
+$red2: color.scale($red, $lightness: 10%);
+$fg-gray: #676767;
+$bg-gray: #f9f9f9;
+$fg-gray2: color.scale(#676767, $lightness: 90%);
+
+:root {
+    --fg-dark: white;
+    --fg-light: black;
+}
