@@ -27,9 +27,93 @@ func main() {
 	r.Static("/dist", "./dist")
 
 	r.GET("/", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "index.html", nil)
+		c.HTML(http.StatusOK, "index.html", data)
 	})
 	r.Run(*addr)
+}
+
+type Evaluation struct {
+	Like         uint32
+	Dislike      uint32
+	Rating       float64
+	WorldRationg float64
+}
+
+type ATag struct {
+	Content any
+	Href    string
+}
+type Author struct {
+	Name       string
+	SecondName string
+	Url        string
+}
+type Number struct {
+	Total  uint16
+	Number uint16
+}
+
+var data = struct {
+	Title      string
+	Name       string
+	Image      string
+	Number     Number
+	Author     ATag
+	Evaluation Evaluation
+	Tags       []ATag
+	Year       ATag
+	Status     ATag
+	Type       ATag
+	Studio     ATag
+	Voiceover  []ATag
+}{
+	Number: Number{
+		Total:  128,
+		Number: 78,
+	},
+	Title: "«Противостояние святого»",
+	Name:  "«Противостояние святого»",
+	Image: "https://amedia.lol/uploads/posts/2024-12/original.webp",
+	Author: ATag{
+		Content: Author{
+			"Xian Ni",
+			"Renegade Immortal",
+			"renegade_immortal",
+		},
+		Href: "/renegade_immortal",
+	},
+	Evaluation: Evaluation{
+		Like:         32747,
+		Dislike:      558,
+		Rating:       9.83,
+		WorldRationg: 7.23,
+	},
+	Tags: []ATag{
+		{"экшен", "action"},
+		{"приключение", "adventure"},
+		{"фэнтези", "fantasy"},
+		{"исторический", "history"},
+		{"китайское", "china"},
+		{"3D", "3D"},
+	},
+	Year: ATag{"2023", "/year/2023"},
+	Status: ATag{
+		"Онгоинги",
+		"ongoing",
+	},
+	Type: ATag{
+		"ONA", "ona",
+	},
+	Studio: ATag{
+		"BUILD DREAM",
+		"build_dream",
+	},
+	Voiceover: []ATag{
+		{"AniStar", "anistar"},
+		{"AnimeVost", "anivost"},
+		{"Animy", "animy"},
+		{"FSG N.N. Азия.Subtitles", "fsg_n.n._asia.subtitles"},
+	},
 }
 
 func ws(c *gin.Context) {
@@ -71,8 +155,8 @@ func ws(c *gin.Context) {
 		ws.SetWriteDeadline(time.Now().Add(10 * time.Second))
 		if err := ws.WriteMessage(websocket.TextMessage, []byte{}); err != nil {
 			log.Println("ws send update error:", err)
-			return
 		}
+		return
 		lastPoll = newPoll
 	}
 }

@@ -5,9 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/dist/style.css">
     <script defer src="/dist/script.js"></script>
-    <title>Start-Kit</title>
+    <title>{{.Title}}</title>
   </head>
   <body>
-    Hello World
+    {{range .Tags}}
+    <div>
+      <span style="background:red;">{{.Content}}</span>
+      <span style="background:blue;">{{.Href}}</span>
+    </div>
+    {{else}}
+    <div><strong>no rows</strong></div>
+    {{end}}
   </body>
 </html>
