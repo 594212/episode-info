@@ -7,19 +7,22 @@
         display: flex;
         flex-wrap: wrap;
         gap: 4px;
+
         a {
-            &:hover {
-                background-color: color.scale($red, $lightness: -20%);
-                color: #fff;
-            }
-            background: $fg-gray2;
+            background: $bg-gray2;
             padding: 3px 8px;
             border-radius: 10px;
             color: var(--fg-light);
             text-decoration: none;
+
+            &:hover {
+                background-color: color.scale($red, $lightness: -20%);
+                color: #fff;
+            }
         }
     }
 }
+
 .content__left dl {
     display: grid;
     grid-template-columns: 120px 1fr;

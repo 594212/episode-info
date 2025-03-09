@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/dist/style.css">
+    <link rel="stylesheet" href="/dist/main.css">
+    <link rel="stylesheet" href="/dist/fontawesome.css">
     <script defer src="/dist/script.js"></script>
     <title>{{.Title}}</title>
     <style>
@@ -48,6 +49,18 @@
             </dl>
           </div>
           <div class="content__right">
+            <div class="rating">
+              <div class="rating__world">
+                {{.Evaluation.WorldRating}}
+              </div>
+              <div class="rating__current">
+                {{.Evaluation.Rating}}
+              </div>
+            </div>
+            <div class="release-date">
+              {{.ReleaseTime.Weekday}}
+                {{.ReleaseTime.Hour}}
+            </div>
           </div>
         </div>
         <!--@@@@@@@ -->

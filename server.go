@@ -30,13 +30,14 @@ func main() {
 		c.HTML(http.StatusOK, "index.html", data)
 	})
 	r.Run(*addr)
+
 }
 
 type Evaluation struct {
-	Like         uint32
-	Dislike      uint32
-	Rating       float64
-	WorldRationg float64
+	Like        uint32
+	Dislike     uint32
+	Rating      float64
+	WorldRating float64
 }
 
 type ATag struct {
@@ -53,20 +54,30 @@ type Number struct {
 	Number uint16
 }
 
+type Release struct {
+	Weekday time.Weekday
+	Hour    int
+}
+
 var data = struct {
-	Title      string
-	Name       string
-	Image      string
-	Number     Number
-	Author     ATag
-	Evaluation Evaluation
-	Tags       []ATag
-	Year       ATag
-	Status     ATag
-	Type       ATag
-	Studio     ATag
-	Voiceover  []ATag
+	Title       string
+	Name        string
+	Image       string
+	Number      Number
+	Author      ATag
+	Evaluation  Evaluation
+	ReleaseTime Release
+	Tags        []ATag
+	Year        ATag
+	Status      ATag
+	Type        ATag
+	Studio      ATag
+	Voiceover   []ATag
 }{
+	ReleaseTime: Release{
+		Weekday: 0,
+		Hour:    20,
+	},
 	Number: Number{
 		Total:  128,
 		Number: 78,
@@ -83,10 +94,10 @@ var data = struct {
 		Href: "/renegade_immortal",
 	},
 	Evaluation: Evaluation{
-		Like:         32747,
-		Dislike:      558,
-		Rating:       9.83,
-		WorldRationg: 7.23,
+		Like:        32747,
+		Dislike:     558,
+		Rating:      9.83,
+		WorldRating: 7.23,
 	},
 	Tags: []ATag{
 		{"экшен", "action"},
@@ -128,7 +139,7 @@ func ws(c *gin.Context) {
 	include := []string{"dist/", "./templates"}
 	fd, err := unix.InotifyInit()
 	if err != nil {
-		log.Println("Cant watch files error: ", err)
+		log.Println("Can't watch files error: ", err)
 	}
 	for _, dir := range include {
 		unix.InotifyAddWatch(fd, dir, unix.IN_MODIFY)

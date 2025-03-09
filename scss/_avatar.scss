@@ -4,7 +4,7 @@
 @mixin background-color($bg-color) {
     background-color: $bg-color;
     &:hover {
-        background-color: color.scale($bg-color, $lightness: -30%);
+        background-color: color.scale($bg-color, $chroma: 50%, $space: oklch);
         cursor: pointer;
     }
 }
@@ -25,6 +25,7 @@
         font-size: 1rem;
         border-radius: 10px;
         padding: 1.2rem;
+        font-family: Arial;
     }
 }
 // # reset block

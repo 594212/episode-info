@@ -18,7 +18,41 @@ html {
     font-family: Circe, sans-serif, system-ui;
 }
 
+/* ---------------------------------------- */
+.content__right {
+    .rating {
+        display: flex;
+        gap: 20px;
+        > * {
+            flex: 1;
+            background-color: $bg-gray2;
+            min-width: 120px;
+            padding: 1rem;
+            border-radius: 10px;
+        }
+        &__world {
+        }
+        &__current {
+        }
+    }
+}
+
 .flex-wrapper {
+    display: flex;
+    .content-wrapper {
+        flex: 1;
+        .content {
+            flex-wrap: wrap;
+            display: flex;
+            .content__right {
+                flex: 1;
+            }
+        }
+    }
+}
+/* ---------------------------------------- */
+.flex-wrapper,
+.content {
     display: flex;
 }
 
@@ -46,7 +80,7 @@ html {
             font-size: 20px;
         }
         &__dropdown:hover {
-            border-top: 13px solid color.scale($red, $lightness: 10%);
+            border-top: 13px solid color.scale($red, $saturation: 80%);
             cursor: pointer;
         }
     }
