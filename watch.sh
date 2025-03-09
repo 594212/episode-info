@@ -5,7 +5,7 @@ fuser -k $port/tcp
 
 tsc -w &
 
-sass --watch scss/main.scss:dist/style.css &
+sass --watch scss/:dist/ &
 
 go run server.go --addr="localhost:$port" &
 wait
