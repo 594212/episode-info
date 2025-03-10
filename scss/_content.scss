@@ -3,7 +3,9 @@
 
 .content__left {
     margin-top: 1rem;
+    max-width: 550px;
     .tags {
+        padding-inline: 0;
         display: flex;
         flex-wrap: wrap;
         gap: 4px;
