@@ -26,6 +26,7 @@
 .content__left dl {
     display: grid;
     grid-template-columns: 120px 1fr;
+    margin-top: 2rem;
 
     gap: 1em;
     dt {

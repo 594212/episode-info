@@ -29,8 +29,8 @@ html {
 /* ---------------------------------------- */
 .content__right {
     margin-inline: 1rem;
+    max-width: 540px;
     > * {
-        max-width: 540px;
         border-radius: 10px;
         margin-top: 1rem;
     }
@@ -76,8 +76,26 @@ html {
         text-shadow: 0 0 1px;
     }
 }
+.container {
+    max-width: 550px;
+}
+@media only screen and (min-width: 820px) {
+    .container {
+        max-width: 730px;
+    }
+}
+@media only screen and (min-width: 1220px) {
+    .container {
+        max-width: 1430px;
+    }
+}
+
 .flex-wrapper {
     display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    .avatar {
+    }
     .content-wrapper {
         flex: 1;
         .content {
@@ -90,10 +108,30 @@ html {
     }
 }
 /* ---------------------------------------- */
-.flex-wrapper,
-.content {
-    display: flex;
+/*
+
+.container {
+  max-width: 1430px;
 }
+
+.flex-wrapper {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+@media only screen and (min-width: 1220px) {
+    .content-wrapper {
+        flex: 1;
+        .content {
+            flex-wrap: wrap;
+            display: flex;
+            .content__right {
+                flex: 1;
+            }
+        }
+    }
+}
+*/
 
 .content-wrapper {
     margin-left: 2rem;
