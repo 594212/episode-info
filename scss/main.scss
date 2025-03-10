@@ -5,35 +5,77 @@
 @forward "avatar";
 @forward "content";
 
-ul[class] {
+ul[class],
+ul[id] {
     list-style: none;
-    margin: 0;
-    padding: 0;
 }
-
+html {
+    box-sizing: border-box;
+}
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
 html {
     font-family: Circe, sans-serif, system-ui;
 }
 
+.centered {
+    width: 300;
+    margin-inline: auto;
+}
+
 /* ---------------------------------------- */
 .content__right {
+    margin-inline: 1rem;
+    > * {
+        max-width: 540px;
+        border-radius: 10px;
+        margin-top: 1rem;
+    }
+
+    > * + * {
+        text-align: center;
+        background-color: $bg-gray3;
+        padding: 1rem;
+    }
+
     .rating {
         display: flex;
+        font-size: 22px;
         gap: 20px;
         > * {
             flex: 1;
-            background-color: $bg-gray2;
+            background-color: $bg-gray3;
             min-width: 120px;
             padding: 1rem;
             border-radius: 10px;
         }
-        &__world {
+    }
+
+    ul#timer {
+        justify-content: center;
+        display: flex;
+        gap: 10px;
+
+        h2 {
+            font-weight: 500;
+            font-size: 42px;
+            margin: 10px 0;
         }
-        &__current {
+        span {
+            color: $fg-gray2;
         }
     }
 }
-
+.release-date {
+    font-size: 24px;
+    span:first-of-type {
+        color: $red;
+        text-shadow: 0 0 1px;
+    }
+}
 .flex-wrapper {
     display: flex;
     .content-wrapper {

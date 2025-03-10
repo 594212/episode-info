@@ -4,9 +4,11 @@ $red: #dd5161;
 $blue: #1e98c4;
 $red2: color.scale($red, $lightness: 10%);
 $fg-gray: #676767;
+$fg-gray2: color.scale($fg-gray, $lightness: 50%);
 $bg-gray: #f9f9f9;
 $bg-gray2: color.scale($bg-gray, $lightness: -2%, $space: oklch);
 /* $bg-gray2: color.scale($fg-gray, $lightness: 90%, $space: oklch); */
+$bg-gray3: color.scale($bg-gray2, $lightness: 50%);
 
 :root {
     --fg-dark: white;
@@ -17,3 +19,10 @@ $bg-gray2: color.scale($bg-gray, $lightness: -2%, $space: oklch);
 @debug (color.channel($bg-gray, "lightness", $space: oklch));
 @debug (color.channel($bg-gray2, "lightness", $space: oklch));
 @debug (color.scale($bg-gray, $chroma: -100%, $space: oklch));
+@debug (
+    color.channel(
+        color.scale($bg-gray2, $lightness: 50%),
+        "lightness",
+        $space: oklch
+    )
+);

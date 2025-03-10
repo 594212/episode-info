@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	"html/template"
 	"log"
 	"net/http"
 	"time"
@@ -23,7 +24,11 @@ func main() {
 	flag.Parse()
 	r := gin.Default()
 	r.GET("/ws", ws)
+	r.SetFuncMap(template.FuncMap{
+		"add": func(a, b int) int { return a + b },
+	})
 	r.LoadHTMLGlob("templates/*")
+
 	r.Static("/dist", "./dist")
 
 	r.GET("/", func(c *gin.Context) {
@@ -50,14 +55,19 @@ type Author struct {
 	Url        string
 }
 type Number struct {
-	Total  uint16
-	Number uint16
+	Total  int
+	Number int
 }
 
-type Release struct {
-	Weekday time.Weekday
-	Hour    int
-}
+// type Release struct {
+// 	Weekday     time.Weekday
+// 	Hour        int
+// 	Releasetime time.Time
+// }
+
+var now = time.Now()
+var future = now.AddDate(0, 0, 7)
+var targetTime = time.Date(future.Year(), future.Month(), future.Day(), 20, 0, 0, 0, future.Location())
 
 var data = struct {
 	Title       string
@@ -66,7 +76,7 @@ var data = struct {
 	Number      Number
 	Author      ATag
 	Evaluation  Evaluation
-	ReleaseTime Release
+	ReleaseTime string
 	Tags        []ATag
 	Year        ATag
 	Status      ATag
@@ -74,10 +84,7 @@ var data = struct {
 	Studio      ATag
 	Voiceover   []ATag
 }{
-	ReleaseTime: Release{
-		Weekday: 0,
-		Hour:    20,
-	},
+	ReleaseTime: targetTime.Format(time.RFC3339),
 	Number: Number{
 		Total:  128,
 		Number: 78,

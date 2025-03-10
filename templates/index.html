@@ -14,7 +14,7 @@
     </style>
   </head>
   <body>
-    <div class="flex-wrapper">
+    <div class="flex-wrapper" style="max-width: 1430px; margin-inline:auto;">
       <div class="avatar">
         <div class="image-wrapper">
           <div class="bottom">
@@ -50,16 +50,30 @@
           </div>
           <div class="content__right">
             <div class="rating">
-              <div class="rating__world">
+              <div>
+                <i class="fa-regular fa-map"></i>
                 {{.Evaluation.WorldRating}}
               </div>
-              <div class="rating__current">
+              <div>
+                <i class="fa-regular fa-star"></i>
                 {{.Evaluation.Rating}}
               </div>
             </div>
+            <!-- <p id="timer" class="release timer" data-releasetime={{.ReleaseTime}}></p> -->
+            <ul id="timer" data-releasetime={{.ReleaseTime}}>
+              <li><h2>0</h2><span>день</span></li>
+              <li><h2>:</h2></li>
+              <li><h2>0</h2><span>час</span></li>
+              <li><h2>:</h2></li>
+              <li><h2>0</h2><span>минута</span></li>
+              <li><h2>:</h2></li>
+              <li><h2>0</h2><span>секунда</span></li>
+            </ul>
             <div class="release-date">
-              {{.ReleaseTime.Weekday}}
-                {{.ReleaseTime.Hour}}
+              <span>
+                {{add .Number.Number 1}} серия -
+              </span>
+              <span id="release-date"></span>
             </div>
           </div>
         </div>
